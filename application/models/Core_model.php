@@ -55,7 +55,7 @@
 					
 				}
 
-				// condicao para saber se salvou ou nao 
+				// condicao para saber se salvou ou nao os dados
 				if ($this->db->affected_rows() > 0) {
 
 					$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
@@ -67,9 +67,13 @@
 				}
 				
 			} else {
-
+				
 			}
 
+		}
+
+		public function update($tabela = NULL, $data = NULL, $condicao = NULL) {
+			if ($tabela && is_array($data));
 		}
 
 	}
