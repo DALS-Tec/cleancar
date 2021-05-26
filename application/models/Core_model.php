@@ -41,7 +41,7 @@
 			
 		} 
 
-		// função de insert de dados no db
+		// função que vai inserir os dados na tabela
 		public function insert($tabela = NULL. $data = NULL, $get_last_id = NULL) {
 
 			if ($tabela && is_array($data)) {
@@ -67,13 +67,64 @@
 				}
 				
 			} else {
-				
+
 			}
 
 		}
 
+		// função que vai atualizar os dados da tabela
 		public function update($tabela = NULL, $data = NULL, $condicao = NULL) {
-			if ($tabela && is_array($data));
+			if ($tabela && is_array($data) && is_array($condicao)) {
+
+				if ($this->db->update($tabela, $data, $condicao)) {
+					$this->session->set_flashdata('sucesso', 'Dados atualizado com sucesso');
+				} else {
+					$this->session->set_flashdata('error', 'Erro ao atualizar os dados');
+				}
+
+			} else {
+
+				return FALSE;
+				
+			}
 		}
 
+		// função que vai deletar os dados da tabela
+		public function delete($tabela = NULL, $data = NULL) {
+
+			$this->db->db_debug = FALSE;
+
+			if ($tabela && is_array($condicao)) {
+
+				// instrução para nao deixar deletar arquivos em outra tabela 
+				$status = $this->db->delete($tabela, $condicao);
+
+				$error = $this->db->error();
+
+				if (!$status) {
+
+					foreach ($error as $code) {
+
+						if ($code == 1451) {
+
+							$this->session->set_flashdata('error', 'Esse registro não pode ser excluído pois está sendo utilizado em outra tabela')
+
+						}
+						
+					}
+					
+				} else {
+					$this->session->set_flashdata('sucesso', 'Registro excluído com sucesso')
+				}
+
+				$this->db->db_debug = TRUE;
+				
+			} else {
+
+				return FALSE;
+				
+			}
+			
+		}
+		
 	}
