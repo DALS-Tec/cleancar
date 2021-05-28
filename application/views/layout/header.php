@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+	<?php echo (isset($titulo) ? "<title> Clean Car | $titulo </title>" : '<title>Clean Car</title>') ?>
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url('public/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
