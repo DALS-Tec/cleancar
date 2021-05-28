@@ -23,26 +23,29 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>#</th>
+                                            <th>Usuario</th>
+                                            <th>Login</th>
+                                            <th>Ativo</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+										<?php foreach ($usuarios as $user): ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td><?php echo $user->id ?></td>
+                                            <td><?php echo $user->username ?></td>
+                                            <td><?php echo $user->email ?></td>
+                                            <td><?php echo $user->active ?></td>
+											<td>
+												<a title="Editar" href="" class="btn btn-sm btn-primary">Editar</a>
+												<a title="Excluir" href="" class="btn btn-sm btn-danger">Excluir</a>
+											</td>
                                         </tr>
+										<?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
