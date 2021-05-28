@@ -1,15 +1,15 @@
 <?php
 
-	defined('BASEPATH') or exit('Ação não permitida');
+	defined('BASEPATH') OR exit('Ação não permitida');
 
 	class Core_model extends CI_Model {
 
 		// função que vai recuperar todos os dados da tabela que será passada
 		public function get_all($tabela = NULL, $condicao = NULL) {
 
-			if($tabela) {
+			if ($tabela) {
 				
-				if(is_array($condicao)) {
+				if (is_array($condicao)) {
 
 					$this->db->where($condicao);
 					
@@ -26,7 +26,7 @@
 		// função que vai recuperar somente um dado da tabela que será passada
 		public function get_by_id($tabela = NULL, $condicao = NULL) {
 
-			if($tabela && is_array($condicao)) {
+			if ($tabela && is_array($condicao)) {
 
 				$this->db->where($condicao);
 				$this->db->limit(1);
@@ -42,7 +42,7 @@
 		} 
 
 		// função que vai inserir os dados na tabela
-		public function insert($tabela = NULL. $data = NULL, $get_last_id = NULL) {
+		public function insert($tabela = NULL, $data = NULL, $get_last_id = NULL) {
 
 			if ($tabela && is_array($data)) {
 
@@ -107,14 +107,14 @@
 
 						if ($code == 1451) {
 
-							$this->session->set_flashdata('error', 'Esse registro não pode ser excluído pois está sendo utilizado em outra tabela')
+							$this->session->set_flashdata('error', 'Esse registro não pode ser excluído pois está sendo utilizado em outra tabela');
 
 						}
 						
 					}
 					
 				} else {
-					$this->session->set_flashdata('sucesso', 'Registro excluído com sucesso')
+					$this->session->set_flashdata('sucesso', 'Registro excluído com sucesso');
 				}
 
 				$this->db->db_debug = TRUE;
