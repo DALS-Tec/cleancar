@@ -23,7 +23,7 @@
                             <a title="Voltar" href="<?php echo base_url('usuarios'); ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
                         </div>
                         <div class="card-body">
-							<form>
+							<form method="POST" name="form_edit">
 							<div class="form-group row">
 
 								<div class="col-md-4">
@@ -85,6 +85,8 @@
 									<input type="password" class="form-control" name="confirm_password" aria-describedby="emailHelp" placeholder="Confirme sua senha">
 									<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
+
+								<input type="hidden" name="usuario_id" value="<?php echo $usuario->id ?>">
 								
 							</div>
 							
