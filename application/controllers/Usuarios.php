@@ -60,7 +60,7 @@
 				
 			} else {
 
-				$this->form_validation->set_rules('first_name', 'O campo nome', 'trim|required');
+				$this->form_validation->set_rules('first_name', '', 'trim|required');
 
 				if ($this->form_validation->run()) {
 					
