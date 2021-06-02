@@ -56,7 +56,8 @@
 
 			if(!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
 
-				exit('Usuário não encontrado');
+				$this->session->set_flashdata('error', 'Usuário não encontrado');
+				redirect('usuarios');
 				
 			} else {
 
