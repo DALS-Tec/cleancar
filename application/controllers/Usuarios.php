@@ -42,28 +42,50 @@
 
 		public function edit($usuario_id = NULL) {
 
+			/*	
+				[first_name] => Admin
+				[last_name] => istrator
+				[email] => admin@admin.com
+				[username] => administrator
+				[active] => 1
+				[perfil_usuario] => 1
+				[password] => 
+				[confirm_password] => 
+				[usuario_id] => 1
+			*/
+
 			if(!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
 
 				exit('Usuário não encontrado');
 				
 			} else {
+
+				$this->form_validation->set_rules('first_name', 'O campo nome', 'trim|required');
+
+				if ($this->form_validation->run()) {
+					
+					exit('Validado');
+					
+				} else {
+					$data = array(
 				
-				$data = array(
-				
-					'titulo' => 'Editar usuário',
+						'titulo' => 'Editar usuário',
+		
+						'usuario' => $this->ion_auth->user($usuario_id)->row(),
 	
-					'usuario' => $this->ion_auth->user($usuario_id)->row(),
-
-					'perfil_usuario' => $this->ion_auth->get_users_groups($usuario_id)->row()
-				);
-
-				// echo '<pre>';
-				// print_r($data['perfil_usuario']);
-				// exit();
-
-				$this->load->view('layout/header', $data);
-				$this->load->view('usuarios/edit');
-				$this->load->view('layout/footer');
+						'perfil_usuario' => $this->ion_auth->get_users_groups($usuario_id)->row()
+					);
+	
+					// echo '<pre>';
+					// print_r($this->input->post());
+					// exit();
+	
+					$this->load->view('layout/header', $data);
+					$this->load->view('usuarios/edit');
+					$this->load->view('layout/footer');
+				}
+				
+				
 			}	
 		}	
 	}
