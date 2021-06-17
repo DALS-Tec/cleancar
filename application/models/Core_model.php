@@ -90,7 +90,7 @@
 		}
 
 		// função que vai deletar os dados da tabela
-		public function delete($tabela = NULL, $data = NULL) {
+		public function delete($tabela = NULL, $condicao = NULL) {
 
 			$this->db->db_debug = FALSE;
 
