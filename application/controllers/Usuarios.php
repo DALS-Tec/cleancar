@@ -63,10 +63,10 @@
 
 				$this->form_validation->set_rules('first_name', '', 'trim|required');
 				$this->form_validation->set_rules('last_name', '', 'trim|required');
-				$this->form_validation->set_rules('email', '', 'trim|required');
+				$this->form_validation->set_rules('email', '', 'trim|required|valid_email|is_unique[users.email]');
 				$this->form_validation->set_rules('username', '', 'trim|required');
-				$this->form_validation->set_rules('password', '', 'trim|required');
-				$this->form_validation->set_rules('confirm_password', '', 'trim|required');
+				$this->form_validation->set_rules('password', 'Senha', 'min_length[5]|max_length[255]');
+				$this->form_validation->set_rules('confirm_password', 'Confirme', 'matches[password]');
 
 				if ($this->form_validation->run()) {
 					
