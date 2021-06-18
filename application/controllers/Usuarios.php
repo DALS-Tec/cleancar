@@ -51,10 +51,10 @@
 				return FALSE;
 
 			} else {
+
 				return TRUE;
-			}
-			
-			
+
+			}			
 		}
 
 		public function username_check($username) {
@@ -63,7 +63,7 @@
 			
 			if ($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))) {
 
-				$this->form_validation->set_message('email_check', 'Esse usuário já existe');
+				$this->form_validation->set_message('username_check', 'Esse usuário já existe');
 
 				return FALSE;
 
@@ -76,7 +76,17 @@
 
 		public function edit($usuario_id = NULL) {
 
-			/*	
+
+
+			if(!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
+
+				$this->session->set_flashdata('error', 'Usuário não encontrado');
+				redirect('usuarios');
+
+
+			} else {
+
+				/*	
 				[first_name] => Admin
 				[last_name] => istrator
 				[email] => admin@admin.com
@@ -86,15 +96,8 @@
 				[password] => 
 				[confirm_password] => 
 				[usuario_id] => 1
-			*/
-
-			if(!$usuario_id || !$this->ion_auth->user($usuario_id)->row()) {
-
-				$this->session->set_flashdata('error', 'Usuário não encontrado');
-				redirect('usuarios');
+				*/
 				
-			} else {
-
 				$this->form_validation->set_rules('first_name', '', 'trim|required');
 				$this->form_validation->set_rules('last_name', '', 'trim|required');
 				$this->form_validation->set_rules('email', '', 'trim|required|valid_email|callback_email_check');
@@ -103,9 +106,55 @@
 				$this->form_validation->set_rules('confirm_password', 'Confirme', 'matches[password]');
 
 				if ($this->form_validation->run()) {
+
+					$data = elements(
+						
+						array(
+							'first_name',
+							'last_name',
+							'email',
+							'username',
+							'active',
+							'password'
+						), $this->input->post()
+
+					);
+
+					$data = $this->security->xss_clean($data);
+
+					// script que foi verificar se foi passado uma nova senha
+					$password = $this->input->post('password');
+
+					//
+					if (!$password) {
+
+						unset($data['password']);
+						
+					}
+
 					
-					exit('Validado');
-					
+					if ($this->ion_auth->update($usuario_id, $data)) {
+
+						$perfil_usuario_db = $this->ion_auth->get_users_groups($usuario_id)->row();
+
+						$perfil_usuario_post = $this->input->post('perfil_usuario');
+
+						// Se for diferente atualiza o grupo
+						if($perfil_usuario_post != $perfil_usuario_db->id) {
+
+							$this->ion_auth->remove_from_group($perfil_usuario_db->id, $usuario_id);
+							$this->ion_auth->add_to_group($perfil_usuario_post, $usuario_id);
+							
+						}
+	
+						$this->session->set_flashdata('sucesso', 'Dados salvo com sucesso');
+						
+					} else {
+						
+						$this->session->set_flashdata('error', 'Erro ao salvar os dados');
+
+					}
+					redirect('usuarios');
 				} else {
 					$data = array(
 				
