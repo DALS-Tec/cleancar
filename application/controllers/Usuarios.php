@@ -79,7 +79,6 @@
 				redirect('usuarios');
 
 			} else {
-
 				$data = array(
 					'titulo' => 'Cadastrar usuário',
 				);
