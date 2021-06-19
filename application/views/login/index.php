@@ -1,6 +1,5 @@
-
-
-    <div class="container">
+    
+	<div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -12,7 +11,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-10 mx-auto">
-								<?php if($message = $this->session->flashdata('error')) { ?>
+								<?php if ($message = $this->session->flashdata('error')) { ?>
 
 									<div class="row">
 										<div class="col-md-12">
@@ -35,11 +34,11 @@
                                     </div>
                                     <form class="user" name="form_auth" method="POST" action="<?php echo base_url('login/auth'); ?>">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user" placeholder="Digite seu e-mail">
-											<input type="password" name="password" class="form-control form-control-user"
+                                            <input type="email" name="email" class="py-3 form-control form-control-user" placeholder="Digite seu e-mail">
+											<input type="password" name="password" class="py-3 form-control form-control-user mt-3"
                                             placeholder="Digite sua senha">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block " style="background-color: #56CCF2 !important; border-color: #56CCF2;">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: #56CCF2 !important; border-color: #56CCF2;">
                                             <span class="h6 text-uppercase text-justify font-weight-bold">Entrar</span>
                                         </button>
                                     </form>

@@ -40,37 +40,56 @@
 
 		}
 
-		public function email_check($email) {
+		public function add() {
 
-			$usuario_id = $this->input->post('usuario_id');
+
 			
-			if ($this->core_model->get_by_id('users', array('email' => $email, 'id !=' => $usuario_id))) {
+			$this->form_validation->set_rules('first_name', '', 'trim|required');
+			$this->form_validation->set_rules('last_name', '', 'trim|required');
 
-				$this->form_validation->set_message('email_check', 'Esse e-mail já existe');
+			$this->form_validation->set_rules('email', '', 'trim|required|valid_email|is_unique[users.email]'); // is_unique[tabela.coluna] - verifica se é unico recebendo como parametro o nome da tabela e a coluna 
+			$this->form_validation->set_rules('username', '', 'trim|required|is_unique[users.username]');
+			$this->form_validation->set_rules('password', 'Senha', 'required|min_length[5]|max_length[255]');
+			$this->form_validation->set_rules('confirm_password', 'Confirme', 'required|matches[password]');
 
-				return FALSE;
+			// codigo para verificar se o formulário enviado foi validado de forma correta baseado nas regras setadas
+			if($this->form_validation->run()) {
+
+				$username = $this->security->xss_clean($this->input->post('username'));
+				$password = $this->security->xss_clean($this->input->post('password'));
+				$email = $this->security->xss_clean($this->input->post('email'));
+				$additional_data = array(
+					'first_name' => $this->input->post('first_name'),
+					'last_name' => $this->input->post('last_name'),
+					'username' => $this->input->post('username'),
+					'active' => $this->input->post('active'),
+				);
+				$group = array($this->input->post('perfil_usuario')); // Sets user to admin.
+
+				$additional_data = $this->security->xss_clean($additional_data);
+
+				$group = $this->security->xss_clean($group);
+			
+				if ($this->ion_auth->register($username, $password, $email, $additional_data, $group)) {
+					$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
+				} else {
+					$this->session->set_flashdata('error', 'Não foi possível salvar os dados');
+				}
+
+				redirect('usuarios');
 
 			} else {
 
-				return TRUE;
+				$data = array(
+					'titulo' => 'Cadastrar usuário',
+				);
 
-			}			
-		}
-
-		public function username_check($username) {
-
-			$usuario_id = $this->input->post('usuario_id');
-			
-			if ($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))) {
-
-				$this->form_validation->set_message('username_check', 'Esse usuário já existe');
-
-				return FALSE;
-
-			} else {
-				return TRUE;
+				$this->load->view('layout/header', $data);
+				$this->load->view('usuarios/add');
+				$this->load->view('layout/footer');
+				
+				//Erro de validaçãp
 			}
-			
 			
 		}
 
@@ -177,4 +196,39 @@
 				
 			}	
 		}	
+
+		public function email_check($email) {
+
+			$usuario_id = $this->input->post('usuario_id');
+			
+			if ($this->core_model->get_by_id('users', array('email' => $email, 'id !=' => $usuario_id))) {
+
+				$this->form_validation->set_message('email_check', 'Esse e-mail já existe');
+
+				return FALSE;
+
+			} else {
+
+				return TRUE;
+
+			}			
+		}
+
+		public function username_check($username) {
+
+			$usuario_id = $this->input->post('usuario_id');
+			
+			if ($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))) {
+
+				$this->form_validation->set_message('username_check', 'Esse usuário já existe');
+
+				return FALSE;
+
+			} else {
+				return TRUE;
+			}
+			
+			
+		}
+
 	}
