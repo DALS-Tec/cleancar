@@ -83,12 +83,9 @@
 				$data = array(
 					'titulo' => 'Cadastrar usuário',
 				);
-
 				$this->load->view('layout/header', $data);
 				$this->load->view('usuarios/add');
 				$this->load->view('layout/footer');
-				
-				//Erro de validaçãp
 			}
 			
 		}
