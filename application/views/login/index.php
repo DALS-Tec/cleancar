@@ -30,7 +30,7 @@
 										<img src="public\img\logo-azul.png" class="" width="200rem">
 									</div>
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
+                                        <h1 class="h4 font-weight-light text-secondary mb-4 ">Seja bem vindo!</h1>
                                     </div>
                                     <form class="user" name="form_auth" method="POST" action="<?php echo base_url('login/auth'); ?>">
                                         <div class="form-group">
@@ -51,6 +51,14 @@
             </div>
 
         </div>
+
+        <footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto text-">
+					<span>Copyright &copy; Clean Car <?php echo date('Y'); ?>&nbsp; | By DALS'Tec. </span>
+				</div>
+			</div>
+		</footer>
 
     </div>
 

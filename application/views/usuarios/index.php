@@ -20,7 +20,7 @@
 				<?php if($message = $this->session->flashdata('sucesso')) : ?>
 					<div class="row">
 						<div class="col-md-12">
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
+							<div class="alert alert-success alert-dismissible border border-0 fade show" role="alert">
 								<strong><i class="far fa-check-circle"></i>&nbsp;&nbsp;<?php echo $message; ?></strong>
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -35,7 +35,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
 								<strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?php echo $message; ?></strong>
 								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -55,13 +55,13 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-gray-800 text-monospace">
                                             <th>#</th>
                                             <th>Usuario</th>
                                             <th>Login</th>
                                             <th>Perfil</th>
                                             <th class="text-center">Ativo</th>
-                                            <th class="text-right no-sort">Ações</th>
+                                            <th class="text-center no-sort">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,9 +74,31 @@
                                             <td class="text-center pr-4"><?php echo ($user->active == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>' ) ?></td>
 											<td class="text-right">
 												<a title="Editar usuário" href="<?php echo base_url('usuarios/edit/'.$user->id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-												<a title="Excluir usuário" href="<?php echo base_url('usuarios/del/'.$user->id) ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+												<a title="Excluir usuário" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
 											</td>
                                         </tr>
+                                        
+                                        
+                                        
+                                        <div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Deseja excluir o usuário?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">Após a exclusão não será mais possível recuperar o usuário.</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Não</button>
+                                                        <a class="btn btn-danger" href="<?php echo base_url('usuarios/del/'.$user->id) ?>">Sim</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
 										<?php endforeach; ?>
                                     </tbody>
                                 </table>

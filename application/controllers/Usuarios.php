@@ -210,6 +210,7 @@
 				redirect('usuarios');
 			}
 		}
+		
 		public function email_check($email) {
 
 			$usuario_id = $this->input->post('usuario_id');
