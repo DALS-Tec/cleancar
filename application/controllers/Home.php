@@ -8,6 +8,12 @@
 
 			parent::__construct();
 
+			// se não há sessao
+			if (!$this->ion_auth->logged_in()) {
+				$this->session->set_flashdata('info', 'Sua sessão expirou');
+				redirect('login');
+			}
+
 		}
 
 		public function index() {
