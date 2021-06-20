@@ -79,7 +79,7 @@
 
 		<!-- Nav Item - Tables -->
 		<li class="nav-item">
-			<a title="Gerenciar dados do sistema" class="nav-link" href="<?php echo base_url('usuarios') ?>">
+			<a title="Gerenciar dados do sistema" class="nav-link" href="<?php echo base_url('sistema') ?>">
 			<i class="fas fa-cog"></i>
 			<span>Sistema</span></a>
 		</li>

@@ -16,8 +16,13 @@ class Sistema extends CI_Controller {
 	public function index() {
 
 		$data = array(
-			'titulo' => 'Editar informações do sistema'
+			'titulo' => 'Editar informações do sistema',
+			'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1 /* pedindo 1 pois existe apenas 1 registro*/))
 		);
+
+		// echo '<pre>';
+		// print_r($data['sistema']);
+		// exit();
 
 		$this->load->view('layout/header', $data);
 		$this->load->view('sistema/index');
