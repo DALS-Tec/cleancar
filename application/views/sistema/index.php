@@ -19,12 +19,38 @@
 		</nav>
 		<!-- Fim Breadcrumb -->
 
+		<?php if($message = $this->session->flashdata('sucesso')) : ?>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-success alert-dismissible border border-0 fade show" role="alert">
+						<strong><i class="far fa-check-circle"></i>&nbsp;&nbsp;<?php echo $message; ?></strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		<?php unset($_SESSION['sucesso']); endif;   ?>
+
+		<?php if($message = $this->session->flashdata('error')) : ?>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?php echo $message; ?></strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		<?php unset($_SESSION['error']); endif; ?>
+
 		<!-- Tela -->
 		<div class="card shadow mb-4">
 			<div class="card-body">
 
 				<!-- Formulário -->
-				<form method="POST" name="form_edit">
+				<form class="user" method="POST" name="form_edit">
 
 					<div class="form-group row mb-3">
 
@@ -44,7 +70,7 @@
 
 						<div class="col-md-3">
 							<label>CNPJ</label>
-							<input type="text" class="form-control" name="sistema_cnpj" aria-describedby="emailHelp" placeholder="CNPJ" value="<?php echo $sistema->sistema_cnpj; ?>" >
+							<input type="text" class="form-control cnpj" name="sistema_cnpj" aria-describedby="emailHelp" placeholder="CNPJ" value="<?php echo $sistema->sistema_cnpj; ?>" >
 							<?php echo form_error('sistema_cnpj', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
@@ -62,14 +88,14 @@
 
 						<div class="col-md-3">
 							<label>Telefone fixo</label>
-							<input type="text" class="form-control" name="sistema_telefone_fixo" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $sistema->sistema_telefone_fixo; ?>" >
+							<input type="text" class="form-control phone_with_ddd" name="sistema_telefone_fixo" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $sistema->sistema_telefone_fixo; ?>" >
 							<?php echo form_error('sistema_telefone_fixo', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
 
 						<div class="col-md-3">
 							<label>Telefone móvel</label>
-							<input type="text" class="form-control" name="sistema_telefone_movel" aria-describedby="emailHelp" placeholder="Telefone móvel" value="<?php echo $sistema->sistema_telefone_movel; ?>" >
+							<input type="text" class="form-control sp_celphones" name="sistema_telefone_movel" aria-describedby="emailHelp" placeholder="Telefone móvel" value="<?php echo $sistema->sistema_telefone_movel; ?>" >
 							<?php echo form_error('sistema_telefone_movel', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
@@ -101,7 +127,7 @@
 
 						<div class="col-md-2">
 							<label>CEP</label>
-							<input type="text" class="form-control" name="sistema_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>" >
+							<input type="text" class="form-control cep" name="sistema_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>" >
 							<?php echo form_error('sistema_cep', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
@@ -122,7 +148,7 @@
 
 						<div class="col-md-2">
 							<label>UF</label>
-							<input type="text" class="form-control" name="sistema_estado" aria-describedby="emailHelp" placeholder="UF" value="<?php echo $sistema->sistema_estado; ?>" >
+							<input type="text" class="form-control uf" name="sistema_estado" aria-describedby="emailHelp" placeholder="UF" value="<?php echo $sistema->sistema_estado; ?>" >
 							<?php echo form_error('sistema_estado', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
@@ -130,10 +156,9 @@
 					</div>
 					
 					<div class="form-group row">
-
 						<div class="col-md-12">
 							<label>Sobre</label>
-							<textarea class="form-control" name="sistema_txt_ordem_servico" aria-describedby="emailHelp" placeholder="Sobre"><?php echo $sistema->sistema_txt_ordem_servico; ?> </textarea>
+							<textarea class="form-control form-control-user" name="sistema_txt_ordem_servico" aria-describedby="emailHelp" placeholder="Sobre"><?php echo $sistema->sistema_txt_ordem_servico; ?> </textarea>
 							<?php echo form_error('sistema_txt_ordem_servico', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
