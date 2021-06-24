@@ -479,7 +479,6 @@ class Clientes extends CI_Controller {
 
 			$this->core_model->delete('clientes', array('cliente_id' => $cliente_id));
 			redirect('clientes');
-			
 		}
 		
 	}
