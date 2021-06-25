@@ -33,7 +33,7 @@
 					<a title="Gerenciar clientes" class="collapse-item" href="<?php echo base_url('clientes') ?>"><i class="fas fa-user-tie font-small"></i>&nbsp;Clientes</a>
 					<a title="Gerenciar clientes" class="collapse-item" href="<?php echo base_url('clientes') ?>"><i class="fas fa-car-alt"></i>&nbsp;Veículos</a>
 					<a title="Gerenciar clientes" class="collapse-item" href="<?php echo base_url('lavadores') ?>"><i class="fas fa-hands-wash"></i>&nbsp;Lavadores</a>
-					<a title="Gerenciar clientes" class="collapse-item" href="<?php echo base_url('Fornecedores') ?>"><i class="fas fa-truck-loading"></i>&nbsp;Fornecedores</a>
+					<a title="Gerenciar clientes" class="collapse-item" href="<?php echo base_url('fornecedores') ?>"><i class="fas fa-truck-loading"></i>&nbsp;Fornecedores</a>
 				</div>
 			</div>
 		</li>

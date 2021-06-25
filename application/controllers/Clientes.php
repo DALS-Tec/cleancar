@@ -89,28 +89,6 @@ class Clientes extends CI_Controller {
 
 			if($this->form_validation->run()) {
 
-				/*
-					[cliente_nome] => Dhyon
-					[cliente_sobrenome] => Keyllo
-					[cliente_data_nascimento] => 2001-02-16
-					[cliente_cpf] => 139.467.700-61 // explicar
-					[cliente_rg_ie] => 015.354.458-90
-					[cliente_email] => 
-					[cliente_telefone] => (11) 3333-3333
-					[cliente_celular] => (11) 93333-3333
-					[cliente_cep] => 02969-100
-					[cliente_endereco] => Rua Arnaldo Alvernaz Nunes
-					[cliente_numero_endereco] => 1000
-					[cliente_complemento] => 
-					[cliente_bairro] => Jardim São José (Zona Norte)
-					[cliente_cidade] => São Paulo
-					[cliente_estado] => SP
-					[cliente_ativo] => 1
-					[cliente_obs] => 
-					[cliente_id] => 1
-					[cliente_tipo] => 1
-				*/
-
 				$data = elements(
 					array(
 						'cliente_nome',

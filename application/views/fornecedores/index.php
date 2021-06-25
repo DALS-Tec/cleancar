@@ -49,7 +49,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a title="Novo cadastro" href="<?php echo base_url('lavadores/add') ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
+                            <a title="Novo cadastro" href="<?php echo base_url('fornecedores/add') ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>&nbsp;Novo</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -57,9 +57,9 @@
                                     <thead>
                                         <tr class="text-gray-900  text-monospace">
                                             <th>#</th>
-                                            <th>Nome completo</th>
-                                            <th>Matricula</th>
-                                            <th>Telefone Celular</th>
+                                            <th>Nome fantasia</th>
+                                            <th>CNPJ</th>
+                                            <th>Telefone fixo</th>
                                             <th>E-mail</th>
                                             <th class="text-center">Ativo</th>
                                             <th class="text-center no-sort">Ações</th>
@@ -67,38 +67,38 @@
                                     </thead>
                                     <tbody>
 									
-										<?php foreach ($lavadores as $lavador): ?>
+										<?php foreach ($fornecedores as $fornecedor): ?>
                                         <tr>
-                                            <td><?php echo $lavador->lavador_id ?></td>
-                                            <td><?php echo $lavador->lavador_nome_completo ?></td>
-                                            <td><?php echo $lavador->lavador_codigo ?></td>
-                                            <td><?php echo $lavador->lavador_celular ?></td>
-                                            <td><?php echo $lavador->lavador_email ?></td>
+                                            <td><?php echo $fornecedor->fornecedor_id ?></td>
+                                            <td><?php echo $fornecedor->fornecedor_nome_fantasia ?></td>
+                                            <td><?php echo $fornecedor->fornecedor_cnpj ?></td>
+                                            <td><?php echo $fornecedor->fornecedor_telefone ?></td>
+                                            <td><?php echo $fornecedor->fornecedor_email ?></td>
                                             <td class="text-center pr-4">
 												<?php 
-													echo ($lavador->lavador_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>' ) 
+													echo ($fornecedor->fornecedor_ativo == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning btn-sm">Não</span>' ) 
 												?>
 											</td>
 											<td class="text-right">
-												<a title="Editar" href="<?php echo base_url('lavadores/edit/'.$lavador->lavador_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
-												<a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#lavador-<?php echo $lavador->lavador_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
+												<a title="Editar" href="<?php echo base_url('fornecedores/edit/'.$fornecedor->fornecedor_id) ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a>
+												<a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#fornecedor-<?php echo $fornecedor->fornecedor_id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a>
 											</td>
                                         </tr>
                                         
-                                        <div class="modal fade" id="lavador-<?php echo $lavador->lavador_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                        <div class="modal fade" id="fornecedor-<?php echo $fornecedor->fornecedor_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Deseja excluir o lavador?</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Deseja excluir o fornecedor?</h5>
                                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">Após a exclusão não será mais possível recuperar o lavador.</div>
+                                                    <div class="modal-body">Após a exclusão não será mais possível recuperar o fornecedor.</div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Não</button>
-                                                        <a class="btn btn-danger" href="<?php echo base_url('lavadores/del/'.$lavador->lavador_id) ?>">Sim</a>
+                                                        <a class="btn btn-danger" href="<?php echo base_url('fornecedores/del/'.$fornecedor->fornecedor_id) ?>">Sim</a>
                                                     </div>
                                                 </div>
                                             </div>

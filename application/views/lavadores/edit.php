@@ -12,7 +12,7 @@
 
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<?php echo base_url('clientes'); ?>">Clientes</a></li>
+					<li class="breadcrumb-item"><a href="<?php echo base_url('lavadores'); ?>">lavadores</a></li>
 					<li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
 				</ol>
 				</nav>
@@ -22,94 +22,67 @@
                         <div class="card-body">
 							<form method="POST" name="form_edit">
 
-								<p><strong><i class="fas fa-clock"></i>&nbsp;&nbsp;Última edição:&nbsp;</strong><?php echo formata_data_banco_com_hora($cliente->cliente_data_alteracao) ?></p>
+								<p><strong><i class="fas fa-clock"></i>&nbsp;&nbsp;Última edição:&nbsp;</strong><?php echo formata_data_banco_com_hora($lavador->lavador_data_alteracao) ?></p>
 
-								<!-- Dados pessoais  -->
+								<!-- Dados principais  -->
 								<fieldset class="mb-3 border p-2">
-									<legend class="font-small text-gray-900"><i class="fas fa-user-tie"></i>&nbsp;Dados pessoais</legend>
+									<legend class="font-small text-gray-900"><i class="fas fa-hands-wash"></i>&nbsp;Dados pessoais</legend>
 
-									<div class="form-group row mb-3">
+									<div class="form-group row mb-4">
+
+										<div class="col-md-6">
+											<label>Nome completo</label>
+											<input type="text" class="form-control" name="lavador_nome_completo" aria-describedby="emailHelp" placeholder="Nome completo" value="<?php echo $lavador->lavador_nome_completo; ?>" >
+											<?php echo form_error('lavador_nome_completo', '<small 
+											class="form-text text-danger">','</small>'); ?>
+										</div>
+
 										<div class="col-md-3">
-											<label>Nome</label>
-											<input type="text" class="form-control" name="cliente_nome" aria-describedby="emailHelp" placeholder="Nome" value="<?php echo $cliente->cliente_nome; ?>" >
-											<?php echo form_error('cliente_nome', '<small 
+											<label >CPF</label>
+											<input type="text" class="form-control" name="lavador_cpf" aria-describedby="emailHelp" placeholder="CPF do vendedor" value="<?php echo $lavador->lavador_cpf; ?>" >
+											<?php echo form_error('lavador_cpf', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
-										<div class="col-md-5">
-											<label >Sobrenome</label>
-											<input type="text" class="form-control" name="cliente_sobrenome" aria-describedby="emailHelp" placeholder="Seu sobrenome" value="<?php echo $cliente->cliente_sobrenome; ?>" >
-											<?php echo form_error('cliente_sobrenome', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-										<div class="col-md-4">
-											<label>Data Nascimento</label>
-											<input type="date" class="form-control" name="cliente_data_nascimento" aria-describedby="emailHelp" placeholder="" value="<?php echo $cliente->cliente_data_nascimento; ?>" >
-											<?php echo form_error('cliente_data_nascimento', '<small 
+										<div class="col-md-3">
+											<label>RG</label>
+											<input type="text" class="form-control" name="lavador_rg" aria-describedby="emailHelp" placeholder="RG do vendedor" value="<?php echo $lavador->lavador_rg; ?>" >
+											<?php echo form_error('lavador_rg', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 										
 									</div>
 
-									<div class="form-group row mb-3">
-										<div class="col-md-3">
-											<?php if($cliente->cliente_tipo == '1'): ?>
-												<label>CPF</label>
-												<input type="text" class="form-control cpf" name="cliente_cpf" aria-describedby="emailHelp" placeholder="<?php echo($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente'); ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>" >
-												<?php echo form_error('cliente_cpf', '<small 
-												class="form-text text-danger">','</small>'); ?>
-											<?php else: ?> 
-												<label>CNPJ</label>
-												<input type="text" class="form-control cnpj" name="cliente_cnpj" aria-describedby="emailHelp" placeholder="<?php echo($cliente->cliente_tipo == 1 ? 'CPF do cliente' : 'CNPJ do cliente'); ?>" value="<?php echo $cliente->cliente_cpf_cnpj; ?>" >
-												<?php echo form_error('cliente_cnpj', '<small 
-											class="form-text text-danger">','</small>'); ?>
-											<?php endif; ?>	
-										</div>
-
-										<div class="col-md-3">
-											<?php if($cliente->cliente_tipo == '1'): ?>
-												<label>RG</label>
-											<?php else: ?> 
-												<label>Inscrição Estadual</label>
-											<?php endif; ?>
-											<input type="text" class="form-control" name="cliente_rg_ie" aria-describedby="emailHelp" placeholder="<?php echo($cliente->cliente_tipo == 1 ? 'RG do cliente' : 'IE do cliente'); ?>" value="<?php echo $cliente->cliente_rg_ie; ?>" >
-											<?php echo form_error('cliente_rg_ie', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
+									<div class="form-group row mb-4">
 
 										<div class="col-md-6">
 											<label>E-mail</label>
-											<input type="email" class="form-control" name="cliente_email" aria-describedby="emailHelp" placeholder="Seu e-mail (login)" value="<?php echo $cliente->cliente_email; ?>" >
-											<?php echo form_error('cliente_email', '<small 
+											<input type="email" class="form-control" name="lavador_email" aria-describedby="emailHelp" placeholder="E-mail" value="<?php echo $lavador->lavador_email; ?>" >
+											<?php echo form_error('lavador_email', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
-									</div>
-
-									<div class="form-group row mb-3">
-
-										<div class="col-md-6">
-											<label>Telefone fixo</label>
-											<input type="text" class="form-control phone_with_ddd" name="cliente_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $cliente->cliente_telefone; ?>" >
-											<?php echo form_error('cliente_telefone', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-										<div class="col-md-6">
+										<div class="col-md-3">
 											<label>Telefone celular</label>
-											<input type="text" class="form-control sp_celphones" name="cliente_celular" aria-describedby="emailHelp" placeholder="Telefone celular" value="<?php echo $cliente->cliente_celular; ?>" >
-											<?php echo form_error('cliente_celular', '<small 
+											<input type="text" class="form-control sp_celphones" name="lavador_celular" aria-describedby="emailHelp" placeholder="Telefone celular" value="<?php echo $lavador->lavador_celular; ?>" >
+											<?php echo form_error('lavador_celular', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
+										<div class="col-md-3">
+											<label>Telefone fixo</label>
+											<input type="text" class="form-control sp_celphones" name="lavador_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $lavador->lavador_telefone; ?>" >
+											<?php echo form_error('lavador_telefone', '<small 
+											class="form-text text-danger">','</small>'); ?>
+										</div>
+										
 									</div>
 
 								</fieldset>
 
 								<!-- Dados de endereço  -->
 								<fieldset class="mb-3 border p-2">
-									<!-- Código API de CEP -->
+									
 									<script>
 									
 										function getDadosEnderecoPorCEP() {
@@ -140,38 +113,38 @@
 
 									<div class="form-group row mb-3">
 									
-										<div class="col-md-3">
+										<div class="col-md-2">
 											<label>CEP</label>
 											<div class="input-group">
-												<input id="cep" type="text" class="form-control cep" name="cliente_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $cliente->cliente_cep; ?>" aria-describedby="button-addon2">
+												<input id="cep" type="text" class="form-control cep" name="lavador_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $lavador->lavador_cep; ?>" aria-describedby="button-addon2">
 												<div class="input-group-append">
 													<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getDadosEnderecoPorCEP()"><i class="fas fa-search"></i></button>
 												</div>
 											</div>
 											<?php 
-												echo form_error('cliente_cep', '<small 
+												echo form_error('lavador_cep', '<small 
 												class="form-text text-danger">','</small>'); 
 											?>
 										</div>
 
 										<div class="col-md-4">
 											<label>Endereço</label>
-											<input type="text" class="form-control" name="cliente_endereco" placeholder="Endereço" value="<?php echo $cliente->cliente_endereco; ?>" id="endereco"/>
-											<?php echo form_error('cliente_endereco', '<small 
+											<input type="text" class="form-control" name="lavador_endereco" placeholder="Endereço" value="<?php echo $lavador->lavador_endereco; ?>" id="endereco"/>
+											<?php echo form_error('lavador_endereco', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
 										<div class="col-md-2">
 											<label>Número</label>
-											<input type="text" class="form-control" name="cliente_numero_endereco" placeholder="Número" value="<?php echo $cliente->cliente_numero_endereco; ?>" />
-											<?php echo form_error('cliente_numero_endereco', '<small 
+											<input type="text" class="form-control" name="lavador_numero_endereco" placeholder="Número" value="<?php echo $lavador->lavador_numero_endereco; ?>" />
+											<?php echo form_error('lavador_numero_endereco', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
-										<div class="col-md-3">
+										<div class="col-md-4">
 											<label>Complemento</label>
-											<input type="text" class="form-control" name="cliente_complemento" placeholder="Complemento" value="<?php echo $cliente->cliente_complemento; ?>" />
-											<?php echo form_error('cliente_complemento', '<small 
+											<input type="text" class="form-control" name="lavador_complemento" placeholder="Complemento" value="<?php echo $lavador->lavador_complemento; ?>" />
+											<?php echo form_error('lavador_complemento', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 										
@@ -181,22 +154,22 @@
 
 										<div class="col-md-6">
 											<label>Bairro</label>
-											<input type="text" class="form-control" name="cliente_bairro" placeholder="Bairro" value="<?php echo $cliente->cliente_bairro; ?>" id="bairro"/>
-											<?php echo form_error('cliente_bairro', '<small 
+											<input type="text" class="form-control" name="lavador_bairro" placeholder="Bairro" value="<?php echo $lavador->lavador_bairro; ?>" id="bairro"/>
+											<?php echo form_error('lavador_bairro', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
 										<div class="col-md-4">
 											<label>Cidade</label>
-											<input type="text" class="form-control" name="cliente_cidade" placeholder="Cidade" value="<?php echo $cliente->cliente_cidade; ?>" id="cidade"/>
-											<?php echo form_error('cliente_cidade', '<small 
+											<input type="text" class="form-control" name="lavador_cidade" placeholder="Cidade" value="<?php echo $lavador->lavador_cidade; ?>" id="cidade"/>
+											<?php echo form_error('lavador_cidade', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
 										<div class="col-md-2">
 											<label>UF</label>
-											<input type="text" class="form-control" name="cliente_estado" placeholder="UF" value="<?php echo $cliente->cliente_estado; ?>" id="uf"/>
-											<?php echo form_error('cliente_estado', '<small 
+											<input type="text" class="form-control" name="lavador_estado" placeholder="UF" value="<?php echo $lavador->lavador_estado; ?>" id="uf"/>
+											<?php echo form_error('lavador_estado', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
@@ -210,31 +183,38 @@
 
 										<div class="form-group row mb-3">
 
-											<div class="col-md-4">
+											<div class="col-md-3">
 												<label>Ativo</label>
-												<select class="form-control" name="cliente_ativo" id="">
-													<option value="0" <?php echo ($cliente->cliente_ativo == 0) ? 'selected' : '' ?>>Não</option>
-													<option value="1" <?php echo ($cliente->cliente_ativo == 1) ? 'selected' : '' ?>>Sim</option>
+												<select class="form-control" name="lavador_ativo">
+													<option value="0" <?php echo ($lavador->lavador_ativo == 0) ? 'selected' : '' ?>>Não</option>
+													<option value="1" <?php echo ($lavador->lavador_ativo == 1) ? 'selected' : '' ?>>Sim</option>
 												</select>
 											</div>
+		
+											<div class="col-md-3">
+												<label>Matricula</label>
+												<input type="text" class="form-control" name="lavador_codigo" placeholder="Matricula" readonly value="<?php echo $lavador->lavador_codigo; ?>"/>
+												<?php echo form_error('lavador_codigo', '<small 
+												class="form-text text-danger">','</small>'); ?>
+											</div>
 
-											<div class="col-md-8">
-											<label>Observações</label>
-											<textarea type="text" class="form-control" name="cliente_obs" placeholder="Observações sobre o cliente"><?php echo $cliente->cliente_obs; ?></textarea>
-											<?php echo form_error('cliente_obs', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
+											<div class="col-md-6">
+												<label>Observações</label>
+												<textarea type="text" class="form-control" name="lavador_obs" placeholder="Observações sobre o lavador"><?php echo $lavador->lavador_obs; ?></textarea>
+												<?php echo form_error('lavador_obs', '<small 
+												class="form-text text-danger">','</small>'); ?>
+											</div>
 										
 										</div>
 
 								</fieldset>
 
-								<input type="hidden" name="cliente_id" value="<?php echo $cliente->cliente_id; ?>" />
-								<input type="hidden" name="cliente_tipo" value="<?php echo $cliente->cliente_tipo; ?>" />
+								<input type="hidden" name="lavador_id" value="<?php echo $lavador->lavador_id; ?>" />
 								<button type="submit" class="btn btn-primary btn mr-2">
 									Salvar
 								</button>
-								<a title="Voltar" href="<?php echo base_url('clientes'); ?>" class="btn btn-success"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+								<a title="Voltar" href="<?php echo base_url($this->router->fetch_class()); ?>" class="btn btn-success"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+
 							</form>
                         </div>
 
@@ -245,5 +225,3 @@
 
             </div>
             <!-- End of Main Content -->
-
-            
