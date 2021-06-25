@@ -127,24 +127,25 @@
 			
 		}
 
-		// /*
-		//  * @ Habilitar helper string
-		//  * @param string $table
-		//  * @param string $type_of_code. Ex.: 'numeric', 'alpha', 'alnum', 'basic', 'numeric', 'nozero', 'md5', 'sha1'
-		//  * @param int $size_of_code
-		//  * @param string $field_seach
-		//  * @return int
-		// */
-		
-		// public function generate_unique_code($table = NULL, $type_of_code = NULL, $size_of_code, $field_search) {
+		/**
+		 * @ Habilitar helper string
+		 * @param string $table
+		 * @param string $type_of_code. Ex.: 'numeric', 'alpha', 'alnum', 'basic', 'numeric', 'nozero', 'md5', 'sha1'
+		 * @param int $size_of_code
+		 * @param string $field_seach
+		 * @return int
+		 */
+		public function generate_unique_code($table = NULL, $type_of_code = NULL, $size_of_code = NULL, $field_search = NULL) {
 
-		// 	do {
-		// 		$code = random_string($type_of_code, $size_of_code);
-		// 		$this->db->where($field_search, $code);
-		// 		$this->db->from($table);
-		// 	} while ($this->db->count_all_results() >= 1);
+			$this->load->helper('string');
+			
+			do {
+				$code = random_string($type_of_code,$size_of_code);
+				$this->db->where($field_search, $code);
+				$this->db->from($table);
+			} while ($this->db->count_all_results() >= 1);
 
-		// 	return $code;
-		// }
+			return $code;
+		}
 		
 	}

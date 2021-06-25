@@ -43,6 +43,85 @@ class Lavadores extends CI_Controller {
         $this->load->view('layout/footer');
     }
 	
+	public function add() {
+
+		$this->form_validation->set_rules('lavador_nome_completo', '', 'trim|required|max_length[200]');
+		$this->form_validation->set_rules('lavador_cpf', '', 'trim|required|exact_length[14]|is_unique[lavadores.lavador_cpf]|callback_valida_cpf');
+		$this->form_validation->set_rules('lavador_rg', '', 'trim|max_length[20]|is_unique[lavadores.lavador_rg]');
+		$this->form_validation->set_rules('lavador_email', '', 'trim|valid_email|max_length[50]|is_unique[lavadores.lavador_email]');
+		$this->form_validation->set_rules('lavador_telefone', '', 'trim|max_length[14]|is_unique[lavadores.lavador_telefone]');
+		$this->form_validation->set_rules('lavador_celular', '', 'trim|max_length[15]|is_unique[lavadores.lavador_celular]');
+		$this->form_validation->set_rules('lavador_cep', '', 'trim|required|max_length[10]');
+		$this->form_validation->set_rules('lavador_endereco', '', 'trim|required|max_length[155]');
+		$this->form_validation->set_rules('lavador_endereco', '', 'trim|max_length[155]');
+		$this->form_validation->set_rules('lavador_numero_endereco', '', 'trim|max_length[20]');
+		$this->form_validation->set_rules('lavador_bairro', '', 'trim|required|max_length[45]');
+		$this->form_validation->set_rules('lavador_complemento', '', 'trim|max_length[145]');
+		$this->form_validation->set_rules('lavador_cidade', '', 'trim|required|max_length[50]');
+		$this->form_validation->set_rules('lavador_estado', '', 'trim|required|exact_length[2]');
+		$this->form_validation->set_rules('lavador_obs', '', 'trim|max_length[500]');
+
+		if($this->form_validation->run()) {
+
+			$data = elements(
+				array(
+					'lavador_codigo',
+					'lavador_nome_completo',
+					'lavador_cpf',
+					'lavador_rg',
+					'lavador_email',
+					'lavador_telefone',
+					'lavador_celular',
+					'lavador_cep',
+					'lavador_endereco',
+					'lavador_numero_endereco',
+					'lavador_complemento',
+					'lavador_bairro',
+					'lavador_cidade',
+					'lavador_estado',
+					'lavador_ativo',
+					'lavador_obs',
+				), $this->input->post()
+			);
+
+			// formatar a UF para maiuscula ao enviar no banco de dados
+			$data['lavador_estado'] = strtoupper($this->input->post('lavador_estado'));
+
+			// remover dados com potenciais de ibjeção maliciosa
+			$data = html_escape($data); 
+			
+			$this->core_model->insert('lavadores' ,$data);
+
+			redirect('lavadores');
+			
+		} else {
+
+
+			// erro de validacao
+
+			$data = array(
+
+				'titulo' => 'Cadastrar lavador',
+	
+				'scripts' => array(
+					'vendor/mask/jquery.mask.min.js',
+					'vendor/mask/app.js'
+				),
+
+				'lavador_codigo' => $this->core_model->generate_unique_code('lavadores', 'numeric', 8, 'lavador_codigo'),
+			);
+
+			// echo '<pre>';
+			// print_r($data['lavador']);
+			// exit();
+			
+			$this->load->view('layout/header', $data);
+			$this->load->view('lavadores/add');
+			$this->load->view('layout/footer');	
+		}
+		
+	}
+	
 	public function edit($lavador_id = NULL, $data = NULL) {
 
 		if(!$lavador_id || !$this->core_model->get_by_id('lavadores', array('lavador_id' => $lavador_id))) {
@@ -232,7 +311,7 @@ class Lavadores extends CI_Controller {
 
 		if(!$lavador_id || !$this->core_model->get_by_id('lavadores', array('lavador_id' => $lavador_id))) {
 
-			$this->session->set_flashdata('error', 'lavador não encontrado');
+			$this->session->set_flashdata('error', 'Lavador não encontrado');
 			redirect('lavadores');
 		
 		} else {
