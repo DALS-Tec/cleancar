@@ -33,7 +33,7 @@ class Sistema extends CI_Controller {
 		$this->form_validation->set_rules('sistema_telefone_movel', '','required|max_length[25]');
 		$this->form_validation->set_rules('sistema_email', 'E-mail','required|valid_email|max_length[100]');
 		$this->form_validation->set_rules('sistema_site_url', 'URL do site','required|valid_url|max_length[100]');
-		$this->form_validation->set_rules('sistema_cep', 'CEP','required|exact_length[8]');
+		$this->form_validation->set_rules('sistema_cep', 'CEP','required|max_length[10]');
 		$this->form_validation->set_rules('sistema_endereco', 'Endereço', 'required|max_length[145]');
 		$this->form_validation->set_rules('sistema_numero', 'Número', 'max_length[25]');
 		$this->form_validation->set_rules('sistema_cidade', 'Cidade', 'required|max_length[45]');

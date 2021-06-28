@@ -12,7 +12,7 @@
 
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<?php echo base_url('lavadores'); ?>">lavadores</a></li>
+					<li class="breadcrumb-item"><a href="<?php echo base_url('lavadores'); ?>">Lavadores</a></li>
 					<li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
 				</ol>
 				</nav>
@@ -71,7 +71,7 @@
 
 										<div class="col-md-3">
 											<label>Telefone fixo</label>
-											<input type="text" class="form-control sp_celphones" name="lavador_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $lavador->lavador_telefone; ?>" >
+											<input type="text" class="form-control phone_with_ddd" name="lavador_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $lavador->lavador_telefone; ?>" >
 											<?php echo form_error('lavador_telefone', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>

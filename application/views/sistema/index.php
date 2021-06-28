@@ -118,16 +118,46 @@
 
 					<div class="form-group row">
 
+					<script>		
+						function getDadosEnderecoPorCEP() {
+							let cep = document.getElementById('cep').value
+							
+							let url = 'https://viacep.com.br/ws/'+cep+'/json/unicode/'
+
+							let xmlHTTP = new XMLHttpRequest()
+							xmlHTTP.open('GET', url)
+
+							xmlHTTP.onreadystatechange = () => {
+								if(xmlHTTP.readyState == 4 && xmlHTTP.status == 200) {
+									let dadosJSONText = xmlHTTP.responseText
+									let dadosJSONObj = JSON.parse(dadosJSONText)
+
+									document.getElementById('endereco').value = dadosJSONObj.logradouro
+									document.getElementById('bairro').value = dadosJSONObj.bairro
+									document.getElementById('cidade').value = dadosJSONObj.localidade
+									document.getElementById('uf').value = dadosJSONObj.uf
+								}
+							}
+
+							xmlHTTP.send()
+						}
+					</script>					
+
 						<div class="col-md-4">
 							<label>Endereço</label>
-							<input type="text" class="form-control" name="sistema_endereco" aria-describedby="emailHelp" placeholder="Endereço" value="<?php echo $sistema->sistema_endereco; ?>" >
+							<input id="endereco" type="text" class="form-control" name="sistema_endereco" aria-describedby="emailHelp" placeholder="Endereço" value="<?php echo $sistema->sistema_endereco; ?>" >
 							<?php echo form_error('sistema_endereco', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
 
 						<div class="col-md-2">
 							<label>CEP</label>
-							<input type="text" class="form-control cep" name="sistema_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>" >
+							<div class="input-group">
+								<input id="cep" type="text" class="form-control cep" name="sistema_cep" aria-describedby="emailHelp" placeholder="CEP" value="<?php echo $sistema->sistema_cep; ?>" >
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getDadosEnderecoPorCEP()"><i class="fas fa-search"></i></button>
+								</div>
+							</div>
 							<?php echo form_error('sistema_cep', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
@@ -141,14 +171,14 @@
 
 						<div class="col-md-2">
 							<label>Cidade</label>
-							<input type="text" class="form-control" name="sistema_cidade" aria-describedby="emailHelp" placeholder="Cidade" value="<?php echo $sistema->sistema_cidade; ?>" >
+							<input id="cidade" type="text" class="form-control" name="sistema_cidade" aria-describedby="emailHelp" placeholder="Cidade" value="<?php echo $sistema->sistema_cidade; ?>" >
 							<?php echo form_error('sistema_cidade', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>
 
 						<div class="col-md-2">
 							<label>UF</label>
-							<input type="text" class="form-control uf" name="sistema_estado" aria-describedby="emailHelp" placeholder="UF" value="<?php echo $sistema->sistema_estado; ?>" >
+							<input id="estado" type="text" class="form-control uf" name="sistema_estado" aria-describedby="emailHelp" placeholder="UF" value="<?php echo $sistema->sistema_estado; ?>" >
 							<?php echo form_error('sistema_estado', '<small 
 							class="form-text text-danger">','</small>'); ?>
 						</div>

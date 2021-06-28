@@ -52,8 +52,8 @@ class Fornecedores extends CI_Controller
 			
 			$this->form_validation->set_rules('fornecedor_nome_fantasia', '', 'trim|required|max_length[145]|callback_check_nome_fantasia');
 			$this->form_validation->set_rules('fornecedor_cnpj', '', 'trim|required|exact_length[18]|callback_valida_cnpj');
-			$this->form_validation->set_rules('fornecedor_ie', '', 'trim|max_length[20]|callback_check_fornecedor_ie');
-			$this->form_validation->set_rules('fornecedor_email', '', 'trim|valid_email|max_length[50]|callback_check_fornecedor_email');
+			$this->form_validation->set_rules('fornecedor_ie', '', 'trim|required|max_length[20]|callback_check_fornecedor_ie');
+			$this->form_validation->set_rules('fornecedor_email', '', 'trim|required|valid_email|max_length[50]|callback_check_fornecedor_email');
 			$this->form_validation->set_rules('fornecedor_telefone', '', 'trim|max_length[14]|callback_check_fornecedor_telefone');
 			$this->form_validation->set_rules('fornecedor_celular', '', 'trim|max_length[15]|callback_check_fornecedor_celular');
 
@@ -66,8 +66,21 @@ class Fornecedores extends CI_Controller
 			$this->form_validation->set_rules('fornecedor_cidade', '', 'trim|required|max_length[50]');
 			$this->form_validation->set_rules('fornecedor_estado', '', 'trim|required|exact_length[2]');
 			$this->form_validation->set_rules('fornecedor_obs', '', 'trim|max_length[500]');
+			$this->form_validation->set_rules('fornecedor_contato', '', 'trim|max_length[45]');
 
 			if($this->form_validation->run()) {
+
+				$fornecedor_ativo = $this->input->post('fornecedor_ativo');
+				if($this->db->table_exists('produtos')) {
+
+					if($fornecedor_ativo == 0 && $this->core_model->get_by_id('produtos', array('produto_fornecedor_id' => $fornecedor_id, 'produto_ativo' => 1))){
+						
+						$this->session->set_flashdata('info', 'Esse fornecedor não pode ser desativado pois está sendo utilizado em "Produtos"');
+						redirect('fornecedores');
+
+					}
+					
+				}
 
 				$data = elements(
 					array(
@@ -86,6 +99,7 @@ class Fornecedores extends CI_Controller
 						'fornecedor_cidade',
 						'fornecedor_estado',
 						'fornecedor_ativo',
+						'fornecedor_contato',
 						'fornecedor_obs',
 					), $this->input->post()
 				);

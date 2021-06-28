@@ -60,9 +60,9 @@ class Clientes extends CI_Controller {
 				$this->form_validation->set_rules('cliente_cnpj', '', 'trim|required|exact_length[18]|callback_valida_cnpj');
 			}
 
-			$this->form_validation->set_rules('cliente_rg_ie', '', 'trim|max_length[20]|callback_check_rg_ie');
+			$this->form_validation->set_rules('cliente_rg_ie', '', 'required|trim|max_length[20]|callback_check_rg_ie');
 
-			$this->form_validation->set_rules('cliente_email', '', 'trim|valid_email|max_length[50]|callback_check_email');
+			$this->form_validation->set_rules('cliente_email', '', 'trim|required|valid_email|max_length[50]|callback_check_email');
 
 			if(!empty($this->input->post('cliente_telefone'))) {
 				 
@@ -162,7 +162,6 @@ class Clientes extends CI_Controller {
 		$this->form_validation->set_rules('cliente_nome', '', 'trim|required|max_length[45]');
 		$this->form_validation->set_rules('cliente_sobrenome', '', 'trim|required|max_length[150]');
 		$this->form_validation->set_rules('cliente_data_nascimento', '', 'required');
-
 		$cliente_tipo = $this->input->post('cliente_tipo');
 
 		if($cliente_tipo == 1) {
@@ -171,26 +170,22 @@ class Clientes extends CI_Controller {
 			$this->form_validation->set_rules('cliente_cnpj', '', 'trim|required|exact_length[18]|is_unique[clientes.cliente_cpf_cnpj]|callback_valida_cnpj');
 		}
 
-		$this->form_validation->set_rules('cliente_rg_ie', '', 'trim|max_length[20]|is_unique[clientes.cliente_rg_ie]');
+		$this->form_validation->set_rules('cliente_rg_ie', '', 'trim|required|max_length[20]|is_unique[clientes.cliente_rg_ie]');
 
-		$this->form_validation->set_rules('cliente_email', '', 'trim|valid_email|max_length[50]|is_unique[clientes.cliente_email]');
+		$this->form_validation->set_rules('cliente_email', '', 'trim|required|valid_email|max_length[50]|is_unique[clientes.cliente_email]');
 
 		if(!empty($this->input->post('cliente_telefone'))) {
-			 
 			$this->form_validation->set_rules('cliente_telefone', '', 'trim|max_length[14]|is_unique[clientes.cliente_telefone]');
-			
 		} 
 
 		if(!empty($this->input->post('cliente_celular'))) {
-			 
 			$this->form_validation->set_rules('cliente_celular', '', 'trim|max_length[15]|is_unique[clientes.cliente_celular]');
-			
 		} 
 		
 		
 		$this->form_validation->set_rules('cliente_cep', '', 'trim|required|max_length[10]');
 		$this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
-		$this->form_validation->set_rules('cliente_endereco', '', 'trim|max_length[155]');
+		$this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
 		$this->form_validation->set_rules('cliente_numero_endereco', '', 'trim|max_length[20]');
 		$this->form_validation->set_rules('cliente_bairro', '', 'trim|required|max_length[45]');
 		$this->form_validation->set_rules('cliente_complemento', '', 'trim|max_length[145]');

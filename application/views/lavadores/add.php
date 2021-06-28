@@ -12,7 +12,7 @@
 
 				<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<?php echo base_url('lavadores'); ?>">lavadores</a></li>
+					<li class="breadcrumb-item"><a href="<?php echo base_url('lavadores'); ?>">Lavadores</a></li>
 					<li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
 				</ol>
 				</nav>
@@ -37,7 +37,7 @@
 
 										<div class="col-md-3">
 											<label>CPF</label>
-											<input type="text" class="form-control" name="lavador_cpf" aria-describedby="emailHelp" placeholder="CPF do vendedor" value="<?php echo set_value('lavador_cpf') ?>" >
+											<input type="text" class="form-control cpf" name="lavador_cpf" aria-describedby="emailHelp" placeholder="CPF do vendedor" value="<?php echo set_value('lavador_cpf') ?>" >
 											<?php echo form_error('lavador_cpf', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
@@ -190,14 +190,14 @@
 		
 											<div class="col-md-3">
 												<label>Matricula</label>
-												<input type="text" class="form-control" name="lavador_codigo" placeholder="Matricula" readonly value="<?php echo $lavador_codigo ?>"/>
+												<input type="text" class="form-control-plaintext " name="lavador_codigo" placeholder="Matricula" readonly title="Gerado automaticamente" value="<?php echo $lavador_codigo ?>"/>
 												<?php echo form_error('lavador_codigo', '<small 
 												class="form-text text-danger">','</small>'); ?>
 											</div>
 
 											<div class="col-md-6">
 												<label>Observações</label>
-												<textarea type="text" class="form-control" name="lavador_obs" placeholder="Observações sobre o lavador"><?php echo set_value('lavador_obs') ?></textarea>
+												<textarea type="text" class="form-control" name="lavador_obs" placeholder="Observações sobre o lavador" style="max-height: 120px;"><?php echo set_value('lavador_obs') ?></textarea>
 												<?php echo form_error('lavador_obs', '<small 
 												class="form-text text-danger">','</small>'); ?>
 											</div>

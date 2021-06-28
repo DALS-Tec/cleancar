@@ -37,8 +37,8 @@
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
-										<div class="col-md-5">
-											<label >Nome fantasia</label>
+										<div class="col-md-6">
+											<label>Nome fantasia</label>
 											<input type="text" class="form-control" name="fornecedor_nome_fantasia" aria-describedby="emailHelp" placeholder="Nome fantasia" value="<?php echo $fornecedor->fornecedor_nome_fantasia; ?>" >
 											<?php echo form_error('fornecedor_nome_fantasia', '<small 
 											class="form-text text-danger">','</small>'); ?>
@@ -63,15 +63,25 @@
 										</div>
 
 										<div class="col-md-4">
+											<label>Nome do contato</label>
+											<input type="text" class="form-control" name="fornecedor_contato" aria-describedby="emailHelp" placeholder="Nome do contato" value="<?php echo $fornecedor->fornecedor_contato; ?>" >
+											<?php echo form_error('fornecedor_contato', '<small 
+											class="form-text text-danger">','</small>'); ?>
+										</div>
+
+										
+										
+									</div>
+
+									
+									<div class="form-group row mb-4">
+
+										<div class="col-md-4">
 											<label>Telefone fixo</label>
 											<input type="text" class="form-control phone_with_ddd" name="fornecedor_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $fornecedor->fornecedor_telefone; ?>" >
 											<?php echo form_error('fornecedor_telefone', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
-										
-									</div>
-
-									<div class="form-group row mb-4">
 
 										<div class="col-md-4">
 											<label>Telefone celular</label>
@@ -87,68 +97,8 @@
 											class="form-text text-danger">','</small>'); ?>
 										</div>
 
-										<div class="col-md-4">
-											<label>Nome do contato</label>
-											<input type="text" class="form-control" name="fornecedor_contato" aria-describedby="emailHelp" placeholder="Nome do contato" value="<?php echo $fornecedor->fornecedor_contato; ?>" >
-											<?php echo form_error('fornecedor_contato', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
 										
 									</div>
-
-									<!-- <div class="form-group row mb-3">
-
-										<div class="col-md-3">
-											<?php if($fornecedor->fornecedor_tipo == '1'): ?>
-												<label>CPF</label>
-												<input type="text" class="form-control cpf" name="fornecedor_cpf" aria-describedby="emailHelp" placeholder="<?php echo($fornecedor->fornecedor_tipo == 1 ? 'CPF do fornecedor' : 'CNPJ do fornecedor'); ?>" value="<?php echo $fornecedor->fornecedor_cpf_cnpj; ?>" >
-												<?php echo form_error('fornecedor_cpf', '<small 
-												class="form-text text-danger">','</small>'); ?>
-											<?php else: ?> 
-												<label>CNPJ</label>
-												<input type="text" class="form-control cnpj" name="fornecedor_cnpj" aria-describedby="emailHelp" placeholder="<?php echo($fornecedor->fornecedor_tipo == 1 ? 'CPF do fornecedor' : 'CNPJ do fornecedor'); ?>" value="<?php echo $fornecedor->fornecedor_cpf_cnpj; ?>" >
-												<?php echo form_error('fornecedor_cnpj', '<small 
-											class="form-text text-danger">','</small>'); ?>
-											<?php endif; ?>	
-										</div>
-
-										<div class="col-md-3">
-											<?php if($fornecedor->fornecedor_tipo == '1'): ?>
-												<label>RG</label>
-											<?php else: ?> 
-												<label>Inscrição Estadual</label>
-											<?php endif; ?>
-											<input type="text" class="form-control" name="fornecedor_rg_ie" aria-describedby="emailHelp" placeholder="<?php echo($fornecedor->fornecedor_tipo == 1 ? 'RG do fornecedor' : 'IE do fornecedor'); ?>" value="<?php echo $fornecedor->fornecedor_rg_ie; ?>" >
-											<?php echo form_error('fornecedor_rg_ie', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-										<div class="col-md-6">
-											<label>E-mail</label>
-											<input type="email" class="form-control" name="fornecedor_email" aria-describedby="emailHelp" placeholder="Seu e-mail (login)" value="<?php echo $fornecedor->fornecedor_email; ?>" >
-											<?php echo form_error('fornecedor_email', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-									</div>
-
-									<div class="form-group row mb-3">
-
-										<div class="col-md-6">
-											<label>Telefone fixo</label>
-											<input type="text" class="form-control phone_with_ddd" name="fornecedor_telefone" aria-describedby="emailHelp" placeholder="Telefone fixo" value="<?php echo $fornecedor->fornecedor_telefone; ?>" >
-											<?php echo form_error('fornecedor_telefone', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-										<div class="col-md-6">
-											<label>Telefone celular</label>
-											<input type="text" class="form-control sp_celphones" name="fornecedor_celular" aria-describedby="emailHelp" placeholder="Telefone celular" value="<?php echo $fornecedor->fornecedor_celular; ?>" >
-											<?php echo form_error('fornecedor_celular', '<small 
-											class="form-text text-danger">','</small>'); ?>
-										</div>
-
-									</div> -->
 
 								</fieldset>
 
