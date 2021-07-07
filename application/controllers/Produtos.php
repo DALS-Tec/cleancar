@@ -160,9 +160,9 @@ class Produtos extends CI_Controller{
 				),
 				'produto_codigo' => $this->core_model->generate_unique_code('produtos', 'numeric', 8, 'produto_codigo'),
 				// só vai devolver se a marca ativa for igual a 1 // pra devolver qualquer uma é só tirar o array (de condicao)
-				'marcas' => $this->core_model->get_all('marcas'),
-				'categorias' => $this->core_model->get_all('categorias'),
-				'fornecedores' => $this->core_model->get_all('fornecedores'),
+				'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
+				'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
+				'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
 			);
 
 			$this->load->view('layout/header', $data);
@@ -215,10 +215,10 @@ class Produtos extends CI_Controller{
 			$this->session->set_flashdata('error', 'Produto não encontrado');
 			redirect('produtos');
 			
-		} else() {
+		} else {
 
-			
-			
+			$this->core_model->delete('produtos', array('produto_id' => $produto_id));
+			redirect('produtos');
 		}
 		
 	}
