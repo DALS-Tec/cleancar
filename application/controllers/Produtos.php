@@ -99,9 +99,9 @@ class Produtos extends CI_Controller{
 					'produto' => $this->core_model->get_by_id('produtos', array('produto_id' => $produto_id)),
 	
 					// só vai devolver se a marca ativa for igual a 1 // pra devolver qualquer uma é só tirar o array (de condicao)
-					'marcas' => $this->core_model->get_all('marcas'),
-					'categorias' => $this->core_model->get_all('categorias'),
-					'fornecedores' => $this->core_model->get_all('fornecedores'),
+					'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
+					'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
+					'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
 				);
 	
 				$this->load->view('layout/header', $data);
