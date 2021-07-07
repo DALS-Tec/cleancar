@@ -27,7 +27,8 @@ form.user .form-control-user {
     font-size: .8rem;
     border-radius: 5px;
     padding: 0.8rem 0.5rem;
-    max-height: 12px;
+    max-height: 27px;
+	
 }
 
 .custom-select {
@@ -39,7 +40,7 @@ form.user .form-control-user {
 .form-control-user-date {
     font-size: .8rem;
     border-radius: 5px;
-    padding: 0.1rem 1rem;
+    padding: 0.8rem 0.5rem;
     max-height: 27px;
 }
 
