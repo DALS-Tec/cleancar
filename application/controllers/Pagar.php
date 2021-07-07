@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('Ação não permitida');
 
 class Pagar extends CI_Controller{
 
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
 
         // se nao estiver logado ele redireciona para tela de login
