@@ -110,12 +110,25 @@ class Pagar extends CI_Controller{
         }
     }
 
-		if(!$conta_pagar_id || !$this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id))) {
+	public function add() {
+        
+		$this->form_validation->set_rules('conta_pagar_fornecedor_id', '', 'required');
+		$this->form_validation->set_rules('conta_pagar_data_vencimento', '', 'required');
+		$this->form_validation->set_rules('conta_pagar_valor', '', 'required');
+		$this->form_validation->set_rules('conta_pagar_obs', 'Observações', 'max_length[100]');
 
-			$this->session->set_flashdata('error', 'Conta não encontrada');
-			redirect('pagar');
-			
-		} else {
+		if ($this->form_validation->run()) {
+			$data = elements(
+				array(
+						'conta_pagar_fornecedor_id',
+						'conta_pagar_data_vencimento',
+						'conta_pagar_valor',
+						'conta_pagar_status',
+						'conta_pagar_obs',
+					),
+				$this->input->post()
+			);
+				
 
 			if($this->form_validation->run()) {
 
