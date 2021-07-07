@@ -41,7 +41,7 @@ $(document).ready(function () {
     });
 
     $('.contas_pagar').select2({
-        placeholder: "Nome fanstasia ou CNPJ",
+        placeholder: "Nome fanstasia",
         allowClear: true,
         "language": {
             "noResults": function () {
