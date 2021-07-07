@@ -72,11 +72,11 @@
 										<td><?php echo $conta->fornecedor ?></td>
 										<td><?php echo 'R$&nbsp;'.$conta->conta_pagar_valor ?></td>
 										<td><?php echo formata_data_banco_sem_hora($conta->conta_pagar_data_vencimento) ?></td>
-										<td><?php echo ($conta->conta_pagar_status == 1 ? formata_data_banco_com_hora($conta->conta_pagar_data_pagemento) : 'Aguardando pagamento') ?></td>
+										<td><?php echo ($conta->conta_pagar_status == 1 ? formata_data_banco_com_hora($conta->conta_pagar_data_pagamento) : 'Aguardando pagamento') ?></td>
 
 										<td class="text-center pr-4">
 											<?php if($conta->conta_pagar_status == 1) {
-												echo '<span class="badge badge-sucess btn-sm">Paga</span>';
+												echo '<span class="badge badge-success btn-sm">Paga</span>';
 											} else if (strtotime($conta->conta_pagar_data_vencimento) > strtotime(date('Y-m-d'))){
 												echo '<span class="badge badge-secondary btn-sm">A pagar</span>';
 											} else if (strtotime($conta->conta_pagar_data_vencimento) == strtotime(date('Y-m-d')))
