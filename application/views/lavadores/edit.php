@@ -39,7 +39,7 @@
 
 										<div class="col-md-3">
 											<label >CPF</label>
-											<input type="text" class="form-control" name="lavador_cpf" aria-describedby="emailHelp" placeholder="CPF do vendedor" value="<?php echo $lavador->lavador_cpf; ?>" >
+											<input type="text" class="form-control cpf" name="lavador_cpf" aria-describedby="emailHelp" placeholder="CPF do vendedor" value="<?php echo $lavador->lavador_cpf; ?>" >
 											<?php echo form_error('lavador_cpf', '<small 
 											class="form-text text-danger">','</small>'); ?>
 										</div>
