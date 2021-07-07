@@ -130,15 +130,22 @@ class Pagar extends CI_Controller{
 			);
 				
 
-			if($this->form_validation->run()) {
+			$conta_pagar_status = $this->input->post('conta_pagar_status');
 
-				exit('Validado');
+			if ($conta_pagar_status == 1) {
+				$data['conta_pagar_data_pagamento'] = date('Y-m-d H:i:s');
+			}
 				
-			} else {
+			$data = html_escape($data);
 
-				// form validation
+			$this->core_model->insert('contas_pagar', $data);
 
-				$data = array(
+			redirect('pagar');
+		} else {
+
+				//erro de validacao
+
+			$data = array(
 
 					'titulo' => 'Pagar cadastrados',
 		
@@ -152,22 +159,15 @@ class Pagar extends CI_Controller{
 						'vendor/mask/jquery.mask.min.js',
 						'vendor/mask/app.js',
 					),
-		
-	
-					'conta_pagar' => $this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id)),
 					'fornecedores' => $this->core_model->get_all('fornecedores'),
-				);
+			);
 		
 		
-				$this->load->view('layout/header', $data);
-				$this->load->view('pagar/edit');
-				$this->load->view('layout/footer');
-				
-			}
-
-			
+			$this->load->view('layout/header', $data);
+			$this->load->view('pagar/add');
+			$this->load->view('layout/footer');
 		}
+    }
 		
-	}
 	
 }
